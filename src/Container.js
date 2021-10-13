@@ -4,6 +4,8 @@ import './records.scss'
 
 import Header from "./Header.js"
 import Section from "./Section.js"
+import List from "./List.js"
+import Form from "./Form.js"
 
 
 const Container = () => {
@@ -12,7 +14,7 @@ const Container = () => {
             <Header />
             <main>
                 <Section headingText="Add a new one" />
-                <Section headingText="Records" />
+                <Section headingText="Records" children={<List/>}/>
             </main>
             
         </div>
