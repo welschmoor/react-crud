@@ -22,9 +22,12 @@ const records = [
 
 const Container = () => {
     const [data, setData] = useState(records)
+    const [liveText, setLiveText] = useState([])
+
 
     const submitHandler = entry => {
         setData([...data, entry])
+        setLiveText(`${entry.recordName} added.`)
     }
 
     return(
@@ -34,7 +37,7 @@ const Container = () => {
                 <Section headingText="Add a new one" >  <Form onSubmit={submitHandler} />   </Section>
                 <Section headingText="Records" children={<List children={data}/>}/>
             </main>
-            
+            <div aria-live="polite" aria-atomic="true" className="visually-hidden">{liveText}</div>
         </div>
     )
 }

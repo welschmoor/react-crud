@@ -1,6 +1,7 @@
 
 
 import React, {useState} from "react"
+import Input from "./Input.js"
 
 const initalEntryState = {
     recordName: '',
@@ -23,12 +24,12 @@ const Form = ({onSubmit}) => {
 
     return(
         <form onSubmit={submitHandler}>
-            <label htmlFor="recordName"></label>
-            <input type="text" id="recordName" name="recordName" required onChange={onChangeHandler} value={entry.recordName} />
-            <label htmlFor="artistName"></label>
-            <input type="text" id="artistName" name="artistName" required onChange={onChangeHandler} value={entry.artistName}/>
-            <label htmlFor="description"></label>
-            <textarea id="description" name="description" required onChange={onChangeHandler} value={entry.description}/>
+            <Input labelText="Record Name" type="text" name="recordName" required onChange={onChangeHandler} value={entry.recordName} />
+
+            <Input labelText="Artist Name" type="text" name="artistName" required onChange={onChangeHandler} value={entry.artistName}/>
+
+            <Input type="textarea" name="description" required onChange={onChangeHandler} value={entry.description}/>
+           
             <button type="submit">+Add</button>
         </form>
     )
