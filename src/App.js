@@ -1,13 +1,12 @@
 
 
-import Container from "./Container.js"
-
+import Wrapper from "./Container.js"
 
 
 function App() {
   return (
     <div className="App">
-      <Container />
+      <Wrapper />
     </div>
   );
 }

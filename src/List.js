@@ -12,9 +12,9 @@ const List = ({children}) => {
 
     return(
         <ul>
-            {children.map( ({recordName, artistName, description}) => {
+            {children.map( ({id, recordName, artistName, description}) => {
                 return(
-                    <li key={recordName}>
+                    <li key={id}>
                         <h3>{recordName}</h3>
                         <span>{artistName}</span>
                         <p>{description}</p>
