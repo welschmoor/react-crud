@@ -29,7 +29,12 @@ const Container = (props) => {
 
     useEffect(()=>{
         const fetchData = async () => {
-            const {data} = await axios.get('/ali/records')
+    const {data} = await axios.get('/api/records', {
+        headers: {
+            'Cache-Control': 'private',
+            'X-Custom-Header': 'some-value'
+        }
+    })
             if (isMounted.current) {
                 setData(data)
             }
@@ -44,19 +49,28 @@ const Container = (props) => {
         //     }
         // })
 
-
         return ()=> { return isMounted.current = false}
     }, [])
 
-    const submitHandler = entry => {
+    const submitHandler = async (entry) => {
         // setData([...data, entry])
-        axios.post('/api/records', entry).then(res => {
-            if (isMounted.current) {
-                console.log(res)
-                setData([...data, res.data])
-                setLiveText(`${entry.recordName} added.`)   // we want to set it only once it was successfully POSTed to server
-            }
-        })  
+
+        const resSent = await axios.post('api/records', entry)
+        if (isMounted.current) {
+            
+            setData([...data, resSent.data])
+            setLiveText(`${entry.recordName} added.`)   // we want to set it only once it was successfully POSTed to server
+        }
+
+    
+
+        // axios.post('/api/records', entry).then(res => {
+        //     if (isMounted.current) {
+        //         console.log(res)
+        //         setData([...data, res.data])
+        //         setLiveText(`${entry.recordName} added.`)   // we want to set it only once it was successfully POSTed to server
+        //     }
+        // })  
 
         props.setShowApp(false)
     }
